@@ -10,7 +10,7 @@ class UI {
     container.insertBefore(div, app);
     setTimeout(function(){
         document.querySelector('.alert').remove();
-    }, 3000);
+    }, 3500);
 }
 }
 
@@ -27,7 +27,7 @@ function saveTask(e) {
     date
   };
 
-  if (title === '' || description === '' || date === ''){
+  if (title === '' || date === ''){
     return ui.showMessage('No puede cargar una tarea vacia o con un dato faltante', 'warning');
   }
 
