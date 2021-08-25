@@ -1,5 +1,4 @@
 document.getElementById('formTask').addEventListener('submit', saveTask);
-//ssd
 class UI {
   showMessage(message, cssClass) {
     const div = document.createElement('div');
