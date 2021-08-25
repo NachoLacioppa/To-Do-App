@@ -27,6 +27,10 @@ function saveTask(e) {
     date
   };
 
+  if (title === '' || description === '' || date === ''){
+    return ui.showMessage('No puede cargar una tarea vacia o con un dato faltante', 'warning');
+  }
+
   if(localStorage.getItem('tasks') === null) {
     let tasks = [];
     tasks.push(task);
