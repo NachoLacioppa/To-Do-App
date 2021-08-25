@@ -1,10 +1,26 @@
 document.getElementById('formTask').addEventListener('submit', saveTask);
 
+class UI {
+  showMessage(message, cssClass) {
+    const div = document.createElement('div');
+    div.className = `alert alert-${cssClass} mt-4`;
+    div.appendChild(document.createTextNode(message));
+    //mostrando
+    const container = document.querySelector('.alerta');
+    const app = document.querySelector('#App');
+    container.insertBefore(div, app);
+    setTimeout(function(){
+        document.querySelector('.alert').remove();
+    }, 3000);
+}
+}
+
 function saveTask(e) {
   let title = document.getElementById('title').value;
   let description = document.getElementById('description').value;
   let date = document.getElementById('date').value;
-  console.log(description)
+  
+  const ui = new UI();
 
   let task = {
     title,
@@ -24,11 +40,12 @@ function saveTask(e) {
 
   getTasks();
   document.getElementById('formTask').reset();
+  ui.showMessage('Tarea Cargada', 'success');
   e.preventDefault();
 }
 
 function deleteTask(title) {
-  console.log(title)
+  const ui = new UI();
   let tasks = JSON.parse(localStorage.getItem('tasks'));
   for(let i = 0; i < tasks.length; i++) {
     if(tasks[i].title == title) {
@@ -38,6 +55,7 @@ function deleteTask(title) {
   
   localStorage.setItem('tasks', JSON.stringify(tasks));
   getTasks();
+  ui.showMessage('Tarea eliminada', 'danger');
 }
 
 function getTasks() {
